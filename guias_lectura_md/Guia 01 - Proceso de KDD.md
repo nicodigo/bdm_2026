@@ -1,7 +1,6 @@
 # GUÍA DE LECTURA I: Proceso de KDD
 
-## 1.  Definir Knowledge Discovery in Databases (KDD)
-## 2.  ¿Qué significa patrones válidos y novedosos en la definición de KDD?
+## 1.  Definir Knowledge Discovery in Databases (KDD) 2.  ¿Qué significa patrones válidos y novedosos en la definición de KDD?
 
 KDD es el **descubrimiento de conocimiento en bases de datos**, es el proceso completo el cual **es interactivo e incremental** de transformar datos crudos y masivos en patrones válidos, novedosos, potencialmente útiles y comprensibles. 
 **Importante**: Su principil objetivo es resolver un problema de sobrecarga de datos, para extraer conocimiento estratégico para la toma de decisiones.
