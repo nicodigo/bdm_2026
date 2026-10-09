@@ -152,17 +152,6 @@ Particiona una colección de objetos en subconjuntos o grupos siguiendo el princ
 - **Regresión (Predictiva - Numérica)**: Pronosticar el **monto exacto en pesos ($)** o ingresos que generará cada cliente en las ventas del próximo trimestre en función de sus compras históricas y presupuesto publicitario.
 - **Clustering (Descriptiva - No supervisada)**: Analizar la masa total de clientes registrados y agruparlos en 3 o 4 perfiles sociodemográficos o de hábitos de navegación homogéneos (sin conocer las categorías de antemano) para asignar un gestor comercial dedicado a cada segmento.
 
-> [Bibliografía:]
-
-- Fayyad, U., Piatetsky-Shapiro, G., & Smyth, P. (1996). From data
-  mining to knowledge discovery in databases. AI magazine, 17(3), 37.
-
-- Jiawei Han, Micheline Kamber, Jian Pei. 2011. Tercera edición. Data
-  Mining: Concepts and Techniques.
-
-- Daniel T. Larose. 2014. Segunda edición. Discovering Knowledge in
-  Data: An Introduction to Data Mining.
-
 ## NOTAS
 [^1]: Estaría bueno buscar qué son los algoritmos mencionados, para tener una mejor idea de que se trata KDD.
 
@@ -177,3 +166,14 @@ Particiona una colección de objetos en subconjuntos o grupos siguiendo el princ
 [^6]: Importante remarcar que: ** Objetivo Predictivo -> Algoritmo Supervisado** y ** Objetivo descriptivo -> Algoritmo NO Supervisado**
 
 [^7]: Investigar más a detalle que significa y qué implica el aprendizaje supervisado vs. el no supervisado.
+
+> [Bibliografía:]
+
+- Fayyad, U., Piatetsky-Shapiro, G., & Smyth, P. (1996). From data
+  mining to knowledge discovery in databases. AI magazine, 17(3), 37.
+
+- Jiawei Han, Micheline Kamber, Jian Pei. 2011. Tercera edición. Data
+  Mining: Concepts and Techniques.
+
+- Daniel T. Larose. 2014. Segunda edición. Discovering Knowledge in
+  Data: An Introduction to Data Mining.
