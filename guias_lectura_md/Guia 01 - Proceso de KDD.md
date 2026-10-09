@@ -1,7 +1,7 @@
 # GUÍA DE LECTURA I: Proceso de KDD
 
-1.  Definir Knowledge Discovery in Databases (KDD)
-2.  ¿Qué significa patrones válidos y novedosos en la definición de KDD?
+## 1.  Definir Knowledge Discovery in Databases (KDD)
+## 2.  ¿Qué significa patrones válidos y novedosos en la definición de KDD?
 
 KDD es el **descubrimiento de conocimiento en bases de datos**, es el proceso completo el cual **es interactivo e incremental** de transformar datos crudos y masivos en patrones válidos, novedosos, potencialmente útiles y comprensibles. 
 **Importante**: Su principil objetivo es resolver un problema de sobrecarga de datos, para extraer conocimiento estratégico para la toma de decisiones.
@@ -15,7 +15,7 @@ De acuerdo a la definición de _Fayyad (1996)_ es el proceso no trivial de ident
 - Potencialmente útiles: deben ser aplicables para lograr un beneficio práctico (generalmente en cuanto a la tomas de decisiones). [^2]
 - Comprensibles: El resultado final debe ser interpretable por seres humanos y no una "caja negra" incomprensible. _Obvio pero importante_ lo intepreto como que un ser humano debe poder comprender _de donde sale(?)_ el patrón.
 
-3.  ¿Cuales son las características del proceso de KDD?
+## 3.  ¿Cuales son las características del proceso de KDD?
 
 Las principales características de manera consisa es que se trata de un marco de trabajo **iterativo, interactivo, multietapa e interdisciplinario**. No es una ejecución algorítmica aislada, es una metodología de trabajo guiada por el usuario.
 
@@ -30,7 +30,7 @@ Basándomen en _Fayyad (1996)_ voy a expandir sobre lo que trata cada cosa:
 
 Características principales: Iterativo, Interactivo y Multietapa.
 
-4.  ¿Cuales son los pasos del proceso KDD?
+## 4.  ¿Cuales son los pasos del proceso KDD?
 
 Como mencioné anteriormente la bibliografía utilizada discrepa en la cantidad de etapas, pero no tanto en el contenido total o las tareas totales del proceso.
 Voy a exponer las 9 etapas de _Fayyad_ y luego comparar brevemente con cómo _Han_ condensa este proceso, pero ambos organizaen el proceso en tres bloques: Preprocesamiento, Minería de datos y Evaluación.
@@ -53,7 +53,7 @@ Se agrupa el flujo en:
 - Minería: 5. Minería de datos.
 - Postprocesamiento: 6. Evaluación de patrones, y 7. Presentación del conocimiento.
 
-5.  ¿Qué son las preguntas/objetivos de KDD? ¿Y cuán importantes son para la metodología?
+## 5.  ¿Qué son las preguntas/objetivos de KDD? ¿Y cuán importantes son para la metodología?
 
 Los objetivos del KDD representan la meta final del análisis desda la perspectiva del usuario o del negocio y pueden clasificarse en dos categorías: **verificación** (confirmar una hipótesis previa y **descubrimiento** (identificar patrones nuevos, divididos en predictivos y descriptivos).
 Formular correctamente el problema y la pregunta de investigación es la fase más crítica de la metodología, ya que va a condicionar todas las decisiones técnicas posteriores.
@@ -78,7 +78,7 @@ Podemos dividir los objetivos en verificación y descubrimiento (predictivos y d
 Los objetivos guían todo el proceso por lo que son sumamente importantes, y conviene gastar tiempo en definirlos bien.
 Ejecutar algoritmos de minería sin objetivos claros suele generar resultados pobres.
 
-6.  ¿Cómo relaciona (Han & Kamber) las tareas de preprocesamiento y transformación explicadas por (Fayyad)?
+## 6.  ¿Cómo relaciona (Han & Kamber) las tareas de preprocesamiento y transformación explicadas por (Fayyad)?
 
 _Han & Kamber_ sistematizan las tareas de preparación de datos expresadas por _Fayyad_ (selección, limpieza, reducción y transformación) englobándolas dentro de una categoría llamada **prepocesamiento de datos**. Además incorporan de forma explícita la **integración de datos** como una tarea fundamental previa al minado para consolidar fuentes heterogéneas.
 
@@ -92,7 +92,7 @@ _Han_ en lugar de tratar la limpieza, selección y transformación como pasos de
 
 _Han_ destaca que estas tareas no son fases rígidas simplemente aisladas, sino que son operaciones que se solapan y colaboran entre sí.
 
-7.  ¿En qué consiste la etapa de Data Mining?
+## 7.  ¿En qué consiste la etapa de Data Mining?
 
 Es la fase algorítmica del proceso de KDD, en la cuál se utilizan algoritmos especializados para explorar **datos preprocesados** y extraer patrones o modelos de interés.
 
@@ -108,7 +108,7 @@ A su vez estas taresa se dividen en dos grandes clases:
 - Predictivas: Utilizan variables conocidas para estimar o predecir valores futuros o desconocidos de otras variables **(Clasificación y Regresión)**.
 - Descriptivas: Identifican propiedades generales y relaciones inherentes comprensibles en los datos analizados **(Reglas de asociación, Clustering, Detección de outliers)**.
 
-8.  ¿Cuales son las principales tareas de Data Mining?
+## 8.  ¿Cuales son las principales tareas de Data Mining?
 
 Las tareas son las metas algorítmicas específicas que se aplican para extraer patrones sobre los datos.
 Tanto _Fayyad_ como _Han_ clasifican las tareas principales de minería de datos de la siguiente manera:
@@ -126,7 +126,7 @@ Tienen como objetivo descubrir patrones intrínsecos y propiedades generales com
 
 **Importante y spoiler:** la clasificación exige obligatoriamente un atributo objetivo/etiqueta, mientras que el clustering opera sobre todo el espacio de atributos sin variable dependiente.
 
-9.  ¿Cuál es la diferencia entre clasificación y regresión? ¿Y entre estas dos y clustering?
+## 9.  ¿Cuál es la diferencia entre clasificación y regresión? ¿Y entre estas dos y clustering?
 
 La clasificación y la regresión son tareas predictivas de aprendizaje supervisado[^7] que estiman un valor a partir de datos etiquetados: la clasificación predice etiquetas categóricas discretas y la regresión predice valores numéricos continuos.
 En contraste el agrupamiento o clustering es una tarea descriptiva de aprendizaje no supervisado que descubre grupos naturales en datos no etiquetados basándose en la similitud intrínseca entre objetos.
@@ -144,7 +144,7 @@ También denominada predicción numérica, modela funciones matemáticamente con
 **Agrupamiento:**
 Particiona una colección de objetos en subconjuntos o grupos siguiendo el principio fundamental de maximizar similitud intra-grupo y minimizar similitud inter-grupo.
 
-10. Dar un ejemplo de aplicación donde se puedan usar cada una de las tareas de Data Mining.
+## 10. Dar un ejemplo de aplicación donde se puedan usar cada una de las tareas de Data Mining.
 
 **Sistema Integrado de Gestión de Clientes en un Comercio Electrónico (** **e-commerce** **/ tienda** **AllElectronics** **)**:
 
