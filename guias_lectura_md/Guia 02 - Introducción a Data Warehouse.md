@@ -1,6 +1,6 @@
-[GUÍA DE LECTURA II: DATA WAREHOUSE]{.underline}
+# GUÍA DE LECTURA II: DATA WAREHOUSE
 
-1.  Defina Data Warehouse (DW):
+## 1.  Defina Data Warehouse (DW):
 
     a.  ¿Qué significa que está orientado al sujeto?
 
@@ -46,7 +46,7 @@
 10. ¿En qué consiste el proceso de carga? ¿Qué relación existe entre el
     DSA y esta tarea?
 
-> [Bibliografía sugerida]{.underline}:
+> [Bibliografía sugerida]:
 
 - Data Warehouses and OLAP: Concepts, Architectures and Solutions.
   Robert Wrembel y otro. IGI Global, 2006.
