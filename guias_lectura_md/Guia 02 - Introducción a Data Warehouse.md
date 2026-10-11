@@ -155,6 +155,8 @@ El proceso de carga y la _Staging Area_ están fuertemente vinculados. El Dsa es
 La carga toma el resultado limpio del DSA y se enfoca en la estructuración e inserción física dentro de las tablas de hechos y dimensiones.
 Realizar las transformaciones pesadas en el DSA asegura que el DW de producción y los sistemas operacionales no sufran bloqueos ni caídas de rendimiento mientras se preparan los datos para ser cargados.
 
+---
+
 > [Bibliografía sugerida]:
 
 - Data Warehouses and OLAP: Concepts, Architectures and Solutions.
