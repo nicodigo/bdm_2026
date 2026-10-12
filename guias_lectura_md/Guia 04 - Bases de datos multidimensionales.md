@@ -209,13 +209,131 @@ erDiagram
     Hechos_Tweets }|--|| Dim_Tipo_Publicacion : "formateado_como"
 ```
 
-8.  ¿Qué función cumplen las jerarquías en una base de datos multidimensional? ¿Cuál es su relación con la tabla de dimensiones?
+## 8. ¿Qué función cumplen las jerarquías en una base de datos multidimensional? ¿Cuál es su relación con la tabla de dimensiones?
 
-9.  ¿Cuales son las operaciones OLAP?
+En el modelo multidimensional, las jerarquías cumplen las siguientes funciones fundamentales:
 
-10. Escriba al menos 3 consultas utilizando las operaciones OLAP sobre el esquema de ejemplo del punto 7). ***Comparta los resultados en el Slack*.**
+- Manejo de datos en diferentes niveles de abstracción: Permite organizar los conceptos desde valores de bajo nivel o datos detallados (_raw data_) hasta conceptos de alto nivel o más generales.
+- Definición de relaciones de muchos a uno (N:1): Establecen secuencia de mapeos ordenados donde múltiples miembros o instancias de un nivel inferior se agrupan en una única categoría del nivel superior (ej: varias ciudades pertenecen a una misma provincia).
+- Soporte para operaciones analíticas OLAP: Constituyen el motor conceptual para la navegación interactiva sobre los cubos de datos:
+    * Roll-up: Permite ascender por la jerarquía para obtener datos resumidos y agregados (generalización).
+    * Drill-down: Permite descender por la jerarquía para pasar de un alto nivel de resumen a un nivel más detallado o específico (desagregación).
 
-11. Identificar los PROS/CONTRAS de las tecnologías ROLAP, MOLAP y HOLAP.
+La relación entre las jerarquías y las tablas de dimensiones se evidencia en varios aspectos de diseño y estructuración:
+
+1. Correspondencia Atributo-Nivel: Cada nivel jerárquico de abstracción se corresponde directamente con un atributo específico dentro de la tabla de dimensión (Por ej: en la dimensión _Ubicación_, los atributos _calle_, _ciudad_, _provincia_, y _país_ representan los niveles jerárquicos)
+2. Estructura Interna de la Dimensión: 
+    * Orden Total: Los atributos forman una secuencia lineal simple donde cada nivel tiene un único camino de ascenso (ej. _calle_ < _ciudad_ < _provincia_ < _país_).
+    * Orden Parcial: Los atributos se organizan en múltiples caminos de agregación alternativos dentro de la misma dimensión. Por ej en la dimensión _Tiempo_: _día_ < _mes_ < _año_ y simultáneamente _día_ < _semana_ < _año_.
+3. Mapeo físico según el Esquema de DW:
+    * Estrella: Toda jerarquía de la dimensión se almacena desnormalizada dentro de una única tabla de dimensión.
+    * Copo de Nieve: La jerarquía se normaliza físicamente dividiendo la dimensión en múltipels sub-tablas vinculadas, donde cada sub-tabla representa un nivel de jerarquía.
+
+## 9.  ¿Cuales son las operaciones OLAP?
+
+### Roll-up
+Realiza una agregación o generalización de los datos.
+Se logra ascendiendo en la jerarquía de conceptos de una dimensión (por ej. pasar de ver ventas por ciudad a verlas por país) o eliminando una dimensión del cubo.
+Muestra información más resumida de alto nivel.
+
+### Drill-down
+Es la operación inversa al roll-up, realiza una desagregación o especialización de los datos.
+Se logra descendiendo en la jerarquía de conceptos (por ej. pasar re ver ingresos por trimestre a verlos por mes) o agregando una nueva dimensión al cubo.
+Navega desde datos resumidos hacia datos de mayor detalle.
+
+### Slice
+Realiza una selección fijando un valor específico sobre una sola dimensión.
+Extrae una "rebanada" o subcubo filtrado por esa condición (por ej. seleccionar únicamente los registros donde _Tiempo = 'Q1'_).
+
+### Dice
+Define un subcubo realizando una selección sobre dos o más dimensiones simultáneamente para valores específicos.
+Funciona como un "zoom" que recorta el cubo sobre un subconjunto de criterios combinados (por ej. _Ubicación = ('Toronto' o 'Vancouver') y Tiempo = ('Q1' o 'Q2') y Producto = ('Laptop' o 'Teléfonos')_)
+
+### Pivot
+Es una operación de visualización que rota o gira los ejes del cubo.
+Reorienta la presentación gráfica o tabular del los datos (por ej. intercambiando filas por columnas en una vista 2D) para ofrecer una perspectiva alternativa de análisis.
+
+## 10. Escriba al menos 3 consultas utilizando las operaciones OLAP sobre el esquema de ejemplo del punto 7). ***Comparta los resultados en el Slack*.**
+
+### Consulta 1: Roll-up
+Objetivo: Obtener una visión global del alcance corporativo comparando las impresiones y retweets agregados por **país** y **año**, escalando en la jerarquía conceptual.
+Consulta OLAP: Roll-up sobre la dimensión _Dim\_Ubicacion_ (ascendiendo de _ciudad_ a _pais_) y sobre _Dim\_Tiempo_ (ascendiendo de _fecha_ a _anio_)
+
+SELECT u.pais,
+    t.anio,
+    SUM(h.cantidad\_impresiones) AS total\_impresiones,
+    SUM(h.cantidad\_retweets) AS total\_retweets
+FROM Hechos\_Tweets h
+JOIN Dim\_Ubicacion u ON h.id\_ubicacion = u.id\_ubicacion
+JOIN Dim\_Tiempo t ON h.id\_tiempo = t.id\_tiempo
+GROUP BY u.pais, t.anio;
+
+### Consulta 2: Slice
+Objetivo: Filtrar la información para analizar el rendimiento y el sentimiento promedio de las publicaciones redactadas exclusivamente en idioma español (idioma = 'es').
+Consulta OLAP: slice (fija una condición sobre una única dimensión del cubo).
+
+SELECT th.hashtag\_principal,
+    AVG(h.score\_sentimiento) AS promedio\_sentimiento,
+    SUM(h.cantidad\_likes) AS total\_likes
+FROM Hechos\_Tweets h
+JOIN Dim\_Tema\_Hashtag th ON h.id\_tema = th.id\_tema
+WHERE th.idioma = 'es' GROUP BY th.hashtag\_principal;
+
+### Consulta 3: Dice
+Objetivo: Investigar el nivel de interacción de usuarios verificados ubicados en Argentina durante el cuarto trimestre de 2026.
+Consulta OLAP: dice (aplica condiciones de selección sobre dos o más dimensiones simultáneamente).
+
+SELECT u.username,
+    t.mes,
+    tp.tipo\_mensaje,
+    SUM(h.cantidad\_likes) AS total\_likes,
+    SUM(h.cantidad\_respuestas) AS total\_respuestas
+FROM Hechos\_Tweets h
+JOIN Dim\_Usuario u ON h.id\_usuario = u.id\_usuario
+JOIN Dim\_Ubicacion ub ON h.id\_ubicacion = ub.id\_ubicacion
+JOIN Dim\_Tiempo t ON h.id\_tiempo = t.id\_tiempo
+JOIN Dim\_Tipo\_Publicacion tp ON h.id\_tipo = tp.id\_tipo
+WHERE u.es\_verificado = TRUE
+    AND ub.pais = 'Argentina'
+    AND t.trimestre = 4
+    AND t.anio = 2026
+GROUP BY u.username, t.mes, tp.tipo\_mensaje;
+
+## 11. Identificar los PROS/CONTRAS de las tecnologías ROLAP, MOLAP y HOLAP.
+
+### ROLAP
+#### Ventajas
+- Capaz de manejar volúmenes de datos masivos (Terabytes o Petabytes) y modelos con gran cantidad de dimensiones o millones de miembros.
+- Permite ejecutar _drill-through_ hacia los registros atómicos almacenados en las tablas relacionales de base.
+- Los cambios en el modelo dimensional se trasladan inmediatamente a la base de datos relacional y quedan disponibles para consulta de forma instantánea.
+- La carga inicial e incremental es más rápida porque no requiere el tiempo prolongado de generación previa de multicubos físicos en disco.
+- Interactúa directamente vía SQL contra motores relacionales maduros.
+
+#### Contras
+- Las consultas suelen tardar entre segundos y minutos, ya que deben resolver múltiples uniones y agregaciones SQL en tiempo de ejecución.
+- Para lograr un buen rendimiento requiere aplicar continuamente técnicas de _tuning_, vistas materializadas, indexición _bitmap_ y memoria caché.
+
+### MOLAP
+#### Ventajas
+- Ofrece respuesta en pocos segundos gracias a que las agregaciones se calculan previamente y se accede directamente por posición en la matriz.
+- Aplica técnicas de compresión de matrices dispersas.
+- La estructura matricial/vectorial ofrece un direccionamiento intrínseco por coordenadas.
+- Automatiza el procesamiento de datos agregados a niveles superiores.
+
+#### Contras
+- Presenta serias limitaciones cuando el modelo supera las 10 a 15 dimensiones o maneja cardinalidades de millones de miembros.
+- La fase de precálculo y generación de cubos físicos puede ser sumamente prolongada con grandes volúmenes de datos.
+- El cubo suele tratarse como una estructura encriptada y propietaria, cualquier cambio en el modelo puede exigir recalcular todos los cubos desde cero.
+- Introduce redundancia al almacenar físicamente múltiples niveles de agregaciones previamente calculadas
+
+### HOLAP
+#### Ventajas
+- Logra alta escalabilidad de ROLAP para almacenar el histórico detallado junto con la velocidad de respuesta inmediata de MOLAP para las consultas agregadas habituales.
+- Evita sobrecargar la matriz multidimensional con millones de registros atómicos sin sacrificar la velocidad en las vistas de alto nivel.
+
+#### Contras
+- Exige administrar, configurar y mantener sincronizados dos sistemas gestores distintos.
+- Requiere coordinar estrictamente los ciclos de refresco para evitar discrepancias entre los datos del nivel de retalle (ROLAP) y las agregaciones del cubo (MOLAP).
 
 ---
 
