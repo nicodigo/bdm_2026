@@ -147,66 +147,66 @@ La **tabla de hechos central** almacena las claves foráneas hacia cada dimensi�
 
 ### Diagrama en Estrella
 ```mermaid
-erDiagram 
-    Dim\_Tiempo {
-        int id\_tiempo PK
+erDiagram
+    Dim_Tiempo {
+        int id_tiempo PK
         date fecha
         time hora
-        string dia\_semana
+        string dia_semana
         int mes
         int trimestre
         int anio
     }
 
-    Dim\_Usuario {
-        int id\_usuario PK
+    Dim_Usuario {
+        int id_usuario PK
         string username
-        string nombre\_display
-        string rango\_seguidores
-        boolean es\_verificado
-        string pais\_registro
+        string nombre_display
+        string rango_seguidores
+        boolean es_verificado
+        string pais_registro
     }
 
-    Dim\_Tema\_Hashtag {
-        int id\_tema PK
-        string hashtag\_principal
-        string categoria\_tema
+    Dim_Tema_Hashtag {
+        int id_tema PK
+        string hashtag_principal
+        string categoria_tema
         string idioma
     }
 
-    Dim\_Ubicacion {
-        int id\_ubicacion PK
-        string ciudad 
-        string provincia\_estado
+    Dim_Ubicacion {
+        int id_ubicacion PK
+        string ciudad
+        string provincia_estado
         string pais
     }
 
-    Dim\_Tipo\_Publicacion {
-        int id\_tipo PK
-        string tipo\_mensaje
-        boolean contiene\_media
-        string dispositivo\_origen
+    Dim_Tipo_Publicacion {
+        int id_tipo PK
+        string tipo_mensaje
+        boolean contiene_media
+        string dispositivo_origen
     }
 
-    Hechos\_Tweets {
-        int id\_tiempo FK
-        int id\_usuario FK
-        int id\_tema FK
-        int id\_ubicacion FK
-        int id\_tipo FK
-        int cantidad\_likes
-        int cantidad\_retweets
-        int cantidad\_respuestas
-        int cantidad\_impresiones
-        float score\_sentimiento
-        int conteo\_tweets
+    Hechos_Tweets {
+        int id_tiempo FK
+        int id_usuario FK
+        int id_tema FK
+        int id_ubicacion FK
+        int id_tipo FK
+        int cantidad_likes
+        int cantidad_retweets
+        int cantidad_respuestas
+        int cantidad_impresiones
+        float score_sentimiento
+        int conteo_tweets
     }
 
-    Hechos\_Tweets }|--|| Dim\_Tiempo : "ocurre\_en"
-    Hechos\_Tweets }|--|| Dim\_Usuario : "publicado\_por"
-    Hechos\_Tweets }|--|| Dim\_Tema\_Hashtag : "clasificado\_en"
-    Hechos\_Tweets }|--|| Dim\_Ubicacion : "geolocalizado\_en"
-    Hechos\_Tweets }|--|| Dim\_Tipo\_Publicacion : "formateado\_como"
+    Hechos_Tweets }|--|| Dim_Tiempo : "ocurre_en"
+    Hechos_Tweets }|--|| Dim_Usuario : "publicado_por"
+    Hechos_Tweets }|--|| Dim_Tema_Hashtag : "clasificado_en"
+    Hechos_Tweets }|--|| Dim_Ubicacion : "geolocalizado_en"
+    Hechos_Tweets }|--|| Dim_Tipo_Publicacion : "formateado_como"
 ```
 
 8.  ¿Qué función cumplen las jerarquías en una base de datos multidimensional? ¿Cuál es su relación con la tabla de dimensiones?
