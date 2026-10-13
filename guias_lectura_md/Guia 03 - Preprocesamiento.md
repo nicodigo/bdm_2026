@@ -26,7 +26,7 @@ Si bien se presentan de forma secuencial _Han_ menciona que estas cuatro etapas 
 2. Integración de datos: Combina múltiples fuentes heterogéneas (bd relacionales, cubos de datos o archivos de texto o csv) en un almacén unificado. Resuelve el problema de identificación de entidades, elimina redundancias mediante el análisis de correlación (como _X²_ o coeficientes de correlación) y detecta duplicados.[^1]
 3. Reducción de datos: Obtienen una representación comprimida o más pequeña en volumen de los datos, conservando la integridad analítica para que los resultados del minado sean idénticos o prácticamente los mismos. Incluye:
     - Reducción de dimensionalidad: Eliminación o combinación de atributos (Selección de subconjuntos o Análisi de Componentes Principales - _PCA_). [^2]
-    - Reducción de numerosidad: Reemplaso del volumen original por modelos alternativos paramétricos (regresión) o no paramétricos (histogramas, clustering).
+    - Reducción de numerosidad: Reemplazo del volumen original por modelos alternativos paramétricos (regresión) o no paramétricos (histogramas, clustering).
     - Compresión de datos: Transformaciones con pérdida o sin pérdida.
 4. Transformación de datos: Consolida o escala los atributos en formas o rangos adecuados para los algoritmos. Sus principales estrategias son:
     - Escalado/Normalización: Ajusta los datos a un rango específico mediante min-max, z-score o escalado decimal.
