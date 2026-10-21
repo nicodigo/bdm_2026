@@ -109,7 +109,10 @@ Mide cuánto cambian las predicciones del modelo si se entrena con un conjunto d
 
 ### Dilema
 El _trade-off_ o dilema consiste en que intentar minimizar el sesgo incrementando la complejidad del modelo aumenta inevitablemente la varianza, y viceversa. El objetivo es encontrar el nivel óptimo de complejidad donde la suma de la varianza y el sesgo al cuadrado alcance su punto mínimo sobre el conjunto de prueba.[^4]
+
 $MSE = \text{varianza} + \text{sesgo}^2$
+
+---
 
 > Bibliografía sugerida:
 > - [Mitchell, T. M. (1997). Machine learning. 1997. McGraw Hill, 45(37), 870-877. **Cap 1**.
