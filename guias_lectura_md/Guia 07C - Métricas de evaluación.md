@@ -44,35 +44,35 @@ A partir de una matriz de confusión se pueden calcular diversas medidas de dese
 ### Rendimiento Global
 - Exactiud: Porcentaje total de instancias clasificadas correctamentes sobre el total de casos.
 
-$$ \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} \\[1ex]$$
+$$ \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} $$
 
 - Tasa de error: Porcentaje total de instancias clasificadas de forma errónea.
 
-$$ \text{Error Rate} = \frac{FP + FN}{TP + TN + FP + FN} = 1 - \text{Accuracy} \\[1ex]$$
+$$ \text{Error Rate} = \frac{FP + FN}{TP + TN + FP + FN} = 1 - \text{Accuracy} $$
 
 ### Medidas por Clase (clave ante desbalance de datos)
 - Sensibilidad o exhaustividad: Proporción de casos positivos reales que el modelo identificó correctamente.
 
-$$ \text{Sensibilidad} = \frac{TP}{TP + FN} \\[1ex]$$
+$$ \text{Sensibilidad} = \frac{TP}{TP + FN} $$
 
 - Especificidad: Proporción de casos negativos reales identificados correctamente.
 
-$$ \text{Especificidad} = \frac{TN}{TN + FP} \\[1ex]$$
+$$ \text{Especificidad} = \frac{TN}{TN + FP} $$
 
 - Precisión: Proporción de instancias calificadas como positivas que resultaron ser realmente correctas.
 
-$$ \text{Precision} = \frac{TP}{TP + FP} \\[1ex]$$
+$$ \text{Precision} = \frac{TP}{TP + FP} $$
 
 ### Medidas Compuestas y Avanzadas
 #### Puntaje F o F1-Score
 Media armónica entre la precisión y la sensibilidad. Permite ponderar la importancia relativa de ambas métricas mediante el parámetro $\beta$ (si $\beta = 1$, reciben la misma ponderación).
 
-$$ F1 = \frac{2 \times \text{Precision} \times \text{Sensibilidad}}{\text{Precision} + \text{Sensibilidad}} \\[1ex]$$
+$$ F1 = \frac{2 \times \text{Precision} \times \text{Sensibilidad}}{\text{Precision} + \text{Sensibilidad}} $$
 
 #### Coeficiente Kappa de Cohen
 Mide la concordancia entre la clase real y la predicha, descontando la probabilidad de que la coincidencia ocurra por puro azar _Pr(e)_.
 
-$$ K = \frac{\text{Accuracy} - \text{Pr}(e)}{1 - \text{Pr}(e)} \\[1ex]$$
+$$ K = \frac{\text{Accuracy} - \text{Pr}(e)}{1 - \text{Pr}(e)} $$
 
 #### Curva ROC y AUC
 Herramienta gráfica que representa la relación entre la tasa de verdaderos positivos (sensibilidad) y la tasa de falsos positivos (1 - especificidad) al variar el umbral de decisión. El área bajo la curva (AUC) cuantifica la presición global del modelo independiente del umbral.
