@@ -44,15 +44,15 @@ La diferencia entre los tres tipus de distancia radican en el parámetro de la n
 
     $$d(i,j) = \sum_{k=1}^{p} |x_{ik} - x_{jk}|$$
 
-
 ### Ejemplo
-Dados dos registros de clientes representados en dos atributos $X_1 = \text{Edad}$ y $X_2 = \text{Ingresos (en miles)}$: Punto $x_1 = (1, 2)$ y Punto $x_2 = (3, 5)$.
 
-- Euclídea ($h=2$): Calculamos $\sqrt{(1-3)^2 + (2-5)^2} = \sqrt{(-2)^2 + (-3)^2} = \sqrt{4 + 9} = \sqrt{13} \approx 3.61$. Es la hipotenusa en diagonal entre ambos puntos.
+Dados dos registros de clientes representados en dos atributos $X_1 = \text{Edad}$ y $X_2 = \text{Ingresos (en miles)}$: Punto $x_1 = (1, 2)$ y punto $x_2 = (3, 5)$.
 
-- Manhattan ($h=1$): Sumamos las diferencias absolutas en cada eje: $|1-3| + |2-5| = 2 + 3 = 5$.
+- **Euclídea ($h=2$):** Calculamos $\sqrt{(1-3)^2 + (2-5)^2} = \sqrt{(-2)^2 + (-3)^2} = \sqrt{4 + 9} = \sqrt{13} \approx 3.61$. Es la hipotenusa en diagonal entre ambos puntos.
 
-- Minkowski: Es la expresión general. Si definimos $h=1$ resulta $5$, si definimos $h=2$ resulta $3.61$, y si definimos $h=3$ resolveríamos $\sqrt$ ${|1-3|^3 + |2-5|^3} = \\sqrt$ ${8 + 27} = \\sqrt$ ${35} \approx 3.27$.
+- **Manhattan ($h=1$):** Sumamos las diferencias absolutas en cada eje: $|1-3| + |2-5| = 2 + 3 = 5$.
+
+- **Minkowski:** Es la expresión general. Si definimos $h=1$, resulta $5$; si definimos $h=2$, resulta $3.61$; y si definimos $h=3$, resolvemos $\sqrt[3]{|1-3|^3 + |2-5|^3} = \sqrt[3]{8 + 27} = \sqrt[3]{35} \approx 3.27$.
 
 
 Si imaginamos que estamos en una esquina (Calle 1, Avenida 2), y debemos movernos a otra esquina distinta (Calle 3, Avenida 5)... La distancia de Manhattan es el trayecto a pie siguiendo las calles (avanzar 2 cuadras y luego 3 cuadras), caminando 5 cuadras en total. La distancia Euclídea sería equivalente a volar en línea recta hacia la otra esquina, recorriendo lo equivalente a 3.61 cuadras. Y la distancia de Minkowski es el concepto matemático general utilizado para calcular distancias variando su $h$.
